@@ -29,7 +29,7 @@ def readPoint(pt):
 
 def main():
     if len(sys.argv) < 3:
-        print "Syntax:\n python pyplot.py filename"
+        print "Syntax:\n python pyseder.py filename"
         return
 
     curves = {}
