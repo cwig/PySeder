@@ -1,0 +1,28 @@
+VIEW
+.2 .2 .8 .8
+WIND
+0 0 150 150
+colo
+1 0 0
+widt
+3
+bord
+colo
+0 0 0
+text
+18 50 100
+Hello World!
+circ
+100 100 70
+STOR
+5
+3
+40 45 1.0
+50 90 1.0
+95 90 1.0
+95 45 1.0
+CPLOT
+5
+CPPL
+5
+EXIT

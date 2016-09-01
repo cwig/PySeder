@@ -1,0 +1,42 @@
+%!PS-Adobe-2.0 EPSF-1.2
+%%BoundingBox: 0 0 432 432
+/bb [0 0 432 432] def
+/window {/wy1 exch def  /wx1 exch def  /wy0 exch def  /wx0 exch def} def
+/viewport {
+	/vy1 exch bb 3 get bb 1 get sub mul bb 1 get add def	/vx1 exch bb 2 get bb 0 get sub mul bb 0 get add def
+	/vy0 exch bb 3 get bb 1 get sub mul bb 1 get add def	/vx0 exch bb 2 get bb 0 get sub mul bb 0 get add def
+}def
+0 0 1 1 viewport			0 0 1 1 window
+/wvmap {wy0 sub vy1 vy0 sub wy1 wy0 sub div mul vy0 add exch  wx0 sub vx1 vx0 sub wx1 wx0 sub div mul vx0 add exch} def
+/mv {wvmap moveto} def			/ln {wvmap lineto} def
+/h2c  {dup dup 0 get exch 2 get div exch dup 1 get exch 2 get div} def
+/mvh  {h2c  mv} def		/lnh  {h2c ln} def
+/border {newpath wx0 wy0 mv wx1 wy0 ln wx1 wy1 ln wx0 wy1 ln closepath} def
+%====================== Functions to draw a Bezier Curve and its control polygon  ====================
+/cplot{5 dict begin	%  plot a rational Bezier curve with homogeneous control points.
+		/cp exch def
+		cp 0 get  mvh   % move to first point on curve
+		0 .01 1{  cp exch poft  lnh	}for stroke
+end}  bind def
+/cpplot{5 dict begin % Draw the control polygon of a Bezier curve
+		/p exch def		p 0 get mvh			1 1 p length 1 sub{p exch get lnh }for
+end}def
+/poft{10 dict begin   %  evaluate a rational Bezier curve.  Syntax:     curve   t  poft  =>  point
+		/t exch def		/p exch def
+		/deg  p length 1 sub  def		/u 1 t sub def		/bc 1 def		/tn 1 def
+		/tmp p 0 get u scaleh def
+		1  1  deg 1 sub { /i exch def
+			/tn tn t mul def
+			/bc bc deg i sub 1 add mul i div def
+			/tmp  p i get tn bc mul scaleh tmp addh u scaleh def
+		} for
+		p deg get tn t mul scaleh tmp addh
+end}  bind def
+/addh{5 dict begin   % add two vectors
+	/a exch def		/b exch def 	[a 0 get b 0 get add  a 1 get b 1 get add   a 2 get b 2 get add]  end
+} bind def
+/scaleh{5 dict begin   % scale a vector :   vec scalar  scaleh
+		/b exch def		/a exch def  [a 0 get b mul   a 1 get b mul  a 2 get b mul]	end
+} bind def
+/circ{5 dict begin /r exch def  /y exch def  /x exch def x r add y mv 3 3 360{dup cos r mul x add exch sin r mul y add ln}for stroke} bind def
+%=========================================================================
