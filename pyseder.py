@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 
-with open('sederstring.txt') as f:
+with open('sederstring.eps') as f:
     sederstring = f.read()
 
 #Point is np.array([x,y,w])
